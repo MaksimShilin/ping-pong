@@ -48,7 +48,9 @@ class Player(GameSprite):
             self.rect.y = 175
             player1.rect.x = 25
             player1.rect.y = 175
-            time.delay(100)
+            player2.rect.x = 660
+            player2.rect.y = 175
+            # time.delay(2000)
             self.rect.x -= self.speed_x
             
             
@@ -62,7 +64,9 @@ class Player(GameSprite):
             self.rect.y = 175
             player2.rect.x = 660
             player2.rect.y = 175
-            time.delay(100)
+            player1.rect.x = 25
+            player1.rect.y = 175
+            # time.delay(2000)
             self.rect.x += self.speed_x
             
         
@@ -141,14 +145,14 @@ while game:
         count2 = font1.render(':'+str(count_player2), True, (255, 255, 255))
         window.blit(count1, (333,10))
         window.blit(count2, (346,10))
-        if count_player1 >= 1:
+        if count_player1 >= 7:
             lose = font1.render('YOU LOSE!', True, (255, 255, 255))
             window.blit(lose, (285, 150))
             end = False
             restart.draw_rect((0, 0, 0))
             restart.create_text(40)
             restart.draw_text((0, 0, 0), 'RESTART', 10, 20)
-        if count_player2 >= 1:
+        if count_player2 >= 7:
             win = font1.render('YOU WIN!', True, (255, 255, 255))
             window.blit(win, (290, 150))
             end = False
@@ -161,6 +165,15 @@ while game:
             if start.rect.collidepoint(x_button, y_button):
                 end = True
             if restart.rect.collidepoint(x_button, y_button):
+                count_player1 = 0
+                count_player2 = 0
+                player1.rect.x = 25
+                player1.rect.y = 175
+                player1.move_automatic()
+                player2.rect.x = 660
+                player2.rect.y = 175
+                ball.rect.x = 320
+                ball.rect.y = 175
                 end = True 
         if e.type == QUIT:
                 game = False
