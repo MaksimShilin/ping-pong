@@ -22,15 +22,21 @@ class Player(GameSprite):
     def move(self):
         keys_pressed = key.get_pressed()
         if keys_pressed[K_LEFT] and self.rect.x > 5:
-            self.rect.x -= self.speed
-        if keys_pressed[K_RIGHT] and self.rect.x < x-5:
             self.rect.x += self.speed
-    def update(self):
+        if keys_pressed[K_RIGHT] and self.rect.x < x-100:
+            self.rect.x -= self.speed
+    def move_automatic(self):
         self.rect.x += self.speed
-        if self.rect.x < x-5:
+        if self.rect.x < x-100:
             self.rect.x -= self.speed
         if self.rect.x > 5:
             self.rect.x += self.speed
+    def move_ball(self):
+        self.rect.y += self.speed
+        self.rect.x += self.speed
+        if self.rect.x <= 0 or self.rect.y >= 450:
+            self.speed *= -1
+            
         
 
 x = 450
@@ -42,7 +48,7 @@ window.blit(background, (0,0))
 
 player1 = Player('redplatform.png', 175, 35, 1, 95, 25)
 player2 = Player('blueplatform.png', 175, 625, 2, 95, 25)
-ball = Player('ball.png', 250, 300, 2, 65, 65)
+ball = Player('ball.png', 250, 300, 1, 65, 65)
 
 
 
@@ -56,10 +62,11 @@ game = True
 while game:
     window.blit(background, (0,0))
     player1.reset()
-    # player1.update()
+    # player1.move_automatic()
     player2.reset()
     player2.move()
     ball.reset()
+    ball.move_ball()
     for e in event.get():
         if e.type == QUIT:
                 game = False
