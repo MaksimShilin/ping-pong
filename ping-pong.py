@@ -57,7 +57,6 @@ class Player(GameSprite):
         
         if self.rect.x >= 625:
             global count_player1
-            global player2
             # self.speed_x *= -1
             count_player1 += 1
             self.rect.x = 320
