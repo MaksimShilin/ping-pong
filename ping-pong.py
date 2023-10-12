@@ -175,7 +175,7 @@ while game:
                 ball.rect.y = 175
                 end = True 
         if e.type == QUIT:
-                game = False
-        display.update()
-        clock.tick(120)
+            game = False
+    display.update()
+    clock.tick(105)
         
