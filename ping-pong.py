@@ -177,5 +177,5 @@ while game:
         if e.type == QUIT:
                 game = False
         display.update()
-        clock.tick(105)
+        clock.tick(120)
         
